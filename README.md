@@ -136,7 +136,9 @@ Git / GitHub
 
 Clone the repository:
 
-git clone https://github.com/naringrekarchinmay/kdrama-analytics-recommendation-system.git)cd Kdrama_analytics
+git clone https://github.com/naringrekarchinmay/kdrama-analytics-recommendation-system.git)
+
+cd Kdrama_analytics
 
 
 Install dependencies:
