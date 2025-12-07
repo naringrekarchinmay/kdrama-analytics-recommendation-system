@@ -16,12 +16,19 @@ The result is a data-driven recommendation engine with a production-style UI.
 🧠 Key Features
 
 ✅ Data cleaning & encoding fixes
+
 ✅ Title normalization & fuzzy matching between datasets
+
 ✅ My Rating vs Global Rating comparison
+
 ✅ Actor & Genre preference profiling
+
 ✅ Custom content-based recommendation system
+
 ✅ Multi-page Streamlit dashboard
+
 ✅ Full poster wall with manual image fallback system
+
 ✅ Modern project structure (modular utilities & pages)
 
 🗂 Dataset Sources
@@ -46,30 +53,35 @@ Optional Notes / Watch Year
 
 Some recent 2024+ dramas are not present in Kaggle — these are handled using a local poster fallback system.
 
+```text
 Application Structure
+
 Kdrama_analytics/
-  │
-  ├── app.py                     # Main Streamlit app entry point (landing page)
-  │
-  ├── data/
-  │   ├── kdrama_kaggle_1500.csv  # Kaggle dataset
-  │   └── my_kdrama_ratings.csv  # Personal ratings
-  │
-  ├── missing_posters/           # Local poster images for unmatched/newer shows
-  │
-  ├── notebooks/
-  │   └── 01_eda_kdrama.ipynb    # Full exploratory data analysis & model building
-  │
-  ├── pages/
-  │   ├── 1_Overview.py         # Overview + Poster Wall
-  │   ├── 2_Analytics.py        # Deep analytics & comparisons
-  │   └── 3_Recommendations.py # Personalized recommendations
-  │
-  ├── utils/
-  │   ├── loader.py             # Data loading, cleaning & matching logic
-  │   ├── helpers.py            # Stats + poster matching helpers
-  │   ├── recommender.py        # Recommendation engine
-  │   └── visuals.py            # All charting logic
+│
+├── app.py                     # Main Streamlit app entry point (landing page)
+│
+├── data/
+│   ├── kdrama_kaggle_1500.csv  # Kaggle dataset
+│   └── my_kdrama_ratings.csv  # Personal ratings
+│
+├── missing_posters/           # Local poster images for unmatched/newer shows
+│
+├── notebooks/
+│   └── 01_eda_kdrama.ipynb    # Full exploratory data analysis & model building
+│
+├── pages/
+│   ├── 1_Overview.py         # Overview + Poster Wall
+│   ├── 2_Analytics.py        # Deep analytics & comparisons
+│   └── 3_Recommendations.py # Personalized recommendations
+│
+├── utils/
+│   ├── loader.py             # Data loading, cleaning & matching logic
+│   ├── helpers.py            # Stats + poster matching helpers
+│   ├── recommender.py        # Recommendation engine
+│   └── visuals.py            # All charting logic
+```
+
+
 
 ⚙️ How the System Works (High-Level Flow)
 
@@ -136,7 +148,7 @@ Git / GitHub
 
 Clone the repository:
 
-git clone https://github.com/naringrekarchinmay/kdrama-analytics-recommendation-system.git)
+git  clone https://github.com/naringrekarchinmay/kdrama-analytics-recommendation-system.git)
 
 cd Kdrama_analytics
 
