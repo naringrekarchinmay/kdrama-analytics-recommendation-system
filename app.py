@@ -15,9 +15,9 @@ def main():
 
     st.title("🎭 K-Drama Analytics & Recommender")
     st.write(
-        "Welcome! Use the navigation in the sidebar to explore your K-drama taste, "
-        "analytics, and recommendations. This project combines a Kaggle dataset "
-        "with my own ratings to understand what I like and suggest what to watch next."
+        "A personal K-drama analytics and recommendation dashboard combining "
+        "my own watch history with a refreshed master dataset of 1,958 unique "
+        "Korean dramas for taste profiling, analytics, and recommendations."
     )
 
     data = load_and_prepare_data()
@@ -25,7 +25,7 @@ def main():
 
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("Total dramas rated", stats["num_rated"])
-    col2.metric("Matched with Kaggle", stats["num_matched"])
+    col2.metric("Matched with Master Dataset", stats["num_matched"])
     col3.metric("Avg my rating (matched)", f"{stats['my_mean_matched']:.2f}")
     col4.metric("Avg global rating", f"{stats['global_mean']:.2f}")
 

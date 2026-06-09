@@ -21,7 +21,7 @@ def run():
     col3.metric("Avg diff (Me - Global)", f"{stats['mean_diff']:.2f}")
 
     st.markdown("### Dataset info")
-    st.write(f"Total dramas in Kaggle dataset: **{data['kdrama'].shape[0]}**")
+    st.write(f"Total dramas in refreshed master dataset: **{data['kdrama'].shape[0]:,}**")
     st.write(f"My rated dramas: **{merged.shape[0]}**")
 
     st.markdown(
@@ -39,7 +39,7 @@ def run():
     # We’ll only show rows where we have an image URL
     posters_df = merged.copy()
 
-    # Prefer Kaggle title if present, else my title
+    # Prefer dataset title if present, else my title
     posters_df["display_title"] = posters_df["title_me"].fillna(posters_df.get("title", ""))
 
     # Sort by my rating (highest first)
