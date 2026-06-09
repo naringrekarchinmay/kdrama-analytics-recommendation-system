@@ -1,6 +1,6 @@
 # utils/recommender.py
 
-from typing import Tuple, List
+from typing import Tuple, List, Optional
 
 import pandas as pd
 import streamlit as st
@@ -108,6 +108,81 @@ def build_recommendation_table() -> tuple[pd.DataFrame, list[str], list[str]]:
     )
 
     return candidates, favorite_genres, favorite_actors
+
+def get_available_genres(candidates: pd.DataFrame) -> list[str]:
+    """
+    Return a clean sorted list of all available genres
+    from the recommendation candidate table.
+    """
+    candidates = _ensure_lists(candidates.copy())
+
+    all_genres = (
+        candidates["genre_list"]
+        .explode()
+        .dropna()
+        .astype(str)
+        .str.strip()
+    )
+
+    all_genres = all_genres[all_genres != ""]
+
+    return sorted(all_genres.unique().tolist())
+
+
+def get_filtered_recommendations(
+    candidates: pd.DataFrame,
+    selected_genres: Optional[List[str]] = None,
+    n_recommendations: int = 10,
+    min_global_score: Optional[float] = None,
+) -> pd.DataFrame:
+    """
+    Filter and rank recommendation candidates.
+
+    Parameters:
+    - candidates: full recommendation candidate table from build_recommendation_table()
+    - selected_genres: genre/mood filters selected by the user
+    - n_recommendations: number of recommendations to return
+    - min_global_score: optional minimum global rating filter
+
+    Returns:
+    - filtered and ranked recommendation DataFrame
+    """
+    filtered = candidates.copy()
+    filtered = _ensure_lists(filtered)
+
+    # Filter by selected genres/mood
+    if selected_genres:
+        selected_genre_set = {
+            str(genre).strip().lower()
+            for genre in selected_genres
+            if str(genre).strip() != ""
+        }
+
+        filtered = filtered[
+            filtered["genre_list"].apply(
+                lambda genre_list: bool(
+                    {
+                        str(genre).strip().lower()
+                        for genre in genre_list
+                    }
+                    & selected_genre_set
+                )
+            )
+        ].copy()
+
+    # Optional minimum global rating filter
+    if min_global_score is not None:
+        filtered = filtered[
+            pd.to_numeric(filtered["global_score"], errors="coerce") >= min_global_score
+        ].copy()
+
+    # Sort by recommendation score first, then global score
+    filtered = filtered.sort_values(
+        by=["reco_score", "global_score"],
+        ascending=[False, False]
+    )
+
+    return filtered.head(n_recommendations)
 
 def _split_list_field(val) -> list[str]:
     """
