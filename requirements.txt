@@ -1,5 +1,5 @@
-streamlit
-pandas
-numpy
-altair
-rapidfuzz
+streamlit==1.45.1
+pandas==2.3.3
+numpy==2.1.3
+altair==5.5.0
+rapidfuzz==3.14.3

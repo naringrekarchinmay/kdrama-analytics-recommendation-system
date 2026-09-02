@@ -12,8 +12,11 @@ __pycache__/
 .venv/
 env/
 
-# Streamlit
+# Streamlit (keep shared config, ignore local secrets)
 .streamlit/
+!.streamlit/
+!.streamlit/config.toml
+.streamlit/secrets.toml
 
 # Local secrets
 .env
