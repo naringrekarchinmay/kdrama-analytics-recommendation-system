@@ -1,8 +1,13 @@
 # Pinned for Streamlit Community Cloud, which builds on Python 3.14.
-# Every pin here must ship a cp314 wheel. numpy < 2.3.4 does not, and uv
-# falling back to a source build is what hung the first deploy.
-streamlit==1.45.1
+# Constraints that matter here:
+#   - numpy < 2.3.4 has no cp314 wheel (uv falls back to a source build that hangs)
+#   - altair 5.5.0 fails to import on 3.14: its generated schema uses
+#     TypedDict(closed=True), which 3.14's TypedDict rejects. 5.5.0 is the last
+#     5.x, so altair 6 is required...
+#   - ...but streamlit 1.45.1 caps altair<6, so streamlit moves up too.
+# Verified: full app boots and all three pages render on CPython 3.14.6.
+streamlit==1.63.0
 pandas==2.3.3
 numpy==2.3.4
-altair==5.5.0
+altair==6.2.2
 rapidfuzz==3.14.3
